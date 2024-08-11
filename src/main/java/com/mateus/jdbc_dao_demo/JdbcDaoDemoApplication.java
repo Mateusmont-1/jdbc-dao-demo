@@ -30,6 +30,11 @@ public class JdbcDaoDemoApplication {
 		for(Seller obj:list) {
 			System.out.println(obj);
 		}
+		
+		System.out.println("=== TEST 3 : Seller findAll ===");
+		list = sellerDao.findAll();
+		for(Seller obj:list) {
+			System.out.println(obj);
+		}
 	}
-
 }
