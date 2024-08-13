@@ -8,6 +8,7 @@ import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 
 import com.mateus.jdbc_dao_demo.model.dao.DaoFactory;
+import com.mateus.jdbc_dao_demo.model.dao.DepartmentDao;
 import com.mateus.jdbc_dao_demo.model.dao.SellerDao;
 import com.mateus.jdbc_dao_demo.model.entities.Department;
 import com.mateus.jdbc_dao_demo.model.entities.Seller;
@@ -21,6 +22,7 @@ public class JdbcDaoDemoApplication {
 		Scanner sc = new Scanner(System.in);
 		
 		SellerDao sellerDao = DaoFactory.createSellerDao();
+		DepartmentDao departmentDao = DaoFactory.createDepartmentDao();
 		
 		System.out.println("=== TEST 1 : Seller findById ===");
 		Seller seller = sellerDao.findById(3);
@@ -28,6 +30,7 @@ public class JdbcDaoDemoApplication {
 		System.out.println(seller);
 		
 		System.out.println();
+		
 		System.out.println("=== TEST 2 : Seller findByDepartment ===");
 		Department department = new Department(2, null);
 		List<Seller> list = sellerDao.findByDepartment(department);
@@ -64,6 +67,33 @@ public class JdbcDaoDemoApplication {
 		System.out.print("Enter id for delete test: ");
 		int id = sc.nextInt();
 		sellerDao.deleteById(id);
+		System.out.println("Delete completed");
+		
+		System.out.println("=== TEST 7: findById =======");
+		Department dep = departmentDao.findById(1);
+		System.out.println(dep);
+		
+		System.out.println("\n=== TEST 8: findAll =======");
+		List<Department> list2 = departmentDao.findAll();
+		for (Department d : list2) {
+			System.out.println(d);
+		}
+
+		System.out.println("\n=== TEST 9: insert =======");
+		Department newDepartment = new Department(null, "Music");
+		departmentDao.insert(newDepartment);
+		System.out.println("Inserted! New id: " + newDepartment.getId());
+
+		System.out.println("\n=== TEST 10: update =======");
+		Department dep2 = departmentDao.findById(1);
+		dep2.setName("Food");
+		departmentDao.update(dep2);
+		System.out.println("Update completed");
+		
+		System.out.println("\n=== TEST 11: delete =======");
+		System.out.print("Enter id for delete test: ");
+		int id2 = sc.nextInt();
+		departmentDao.deleteById(id2);
 		System.out.println("Delete completed");
 		
 		sc.close();

@@ -103,9 +103,9 @@ public class SellerDaoJDBC implements SellerDao{
 			
 			int rows = st.executeUpdate();
 			
-			if(rows ==0) {
+			/*if(rows ==0) {
 				throw new DbException("Error! User not found");
-			}
+			}*/
 		}
 		catch(SQLException e) {
 			throw new DbException(e.getMessage());
