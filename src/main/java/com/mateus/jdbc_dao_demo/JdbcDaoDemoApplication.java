@@ -1,5 +1,6 @@
 package com.mateus.jdbc_dao_demo;
 
+import java.util.Date;
 import java.util.List;
 
 import org.springframework.boot.SpringApplication;
@@ -31,10 +32,19 @@ public class JdbcDaoDemoApplication {
 			System.out.println(obj);
 		}
 		
+		System.out.println();
+		
 		System.out.println("=== TEST 3 : Seller findAll ===");
 		list = sellerDao.findAll();
 		for(Seller obj:list) {
 			System.out.println(obj);
 		}
+		
+		System.out.println();
+		
+		System.out.println("=== TEST 4 : Seller insert ===");
+		Seller newSeller = new Seller(null, "Greg", "greg@gmail.com", new Date(), 4000.0, department);
+		sellerDao.insert(newSeller);
+		System.out.println("Inserted! New id = " + newSeller.getId());
 	}
 }
