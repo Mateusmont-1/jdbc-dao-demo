@@ -2,6 +2,7 @@ package com.mateus.jdbc_dao_demo;
 
 import java.util.Date;
 import java.util.List;
+import java.util.Scanner;
 
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
@@ -16,6 +17,8 @@ public class JdbcDaoDemoApplication {
 
 	public static void main(String[] args) {
 		SpringApplication.run(JdbcDaoDemoApplication.class, args);
+		
+		Scanner sc = new Scanner(System.in);
 		
 		SellerDao sellerDao = DaoFactory.createSellerDao();
 		
@@ -55,5 +58,14 @@ public class JdbcDaoDemoApplication {
 		sellerDao.update(seller);
 		System.out.println("Updated! Seller id " + seller.getId());
 		
+		System.out.println();
+		
+		System.out.println("=== TEST 6 : Seller delete ===");
+		System.out.print("Enter id for delete test: ");
+		int id = sc.nextInt();
+		sellerDao.deleteById(id);
+		System.out.println("Delete completed");
+		
+		sc.close();
 	}
 }
